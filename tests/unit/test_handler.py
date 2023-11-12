@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import pytest
-from getting_started_with_test_app import lambda_handler, processor
+from powertools_handler import lambda_handler, processor
 
 
 def load_event(path: Path):
@@ -26,7 +26,7 @@ def lambda_context():
 @pytest.fixture()
 def sqs_event():
     """Generates sqs Event"""
-    return load_event(path=Path("events/hello.json"))
+    return load_event(path=Path("events/pokemon.json"))
 
 
 def test_app_batch_partial_response(sqs_event, lambda_context):

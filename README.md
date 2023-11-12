@@ -70,6 +70,10 @@ Sam init creates a lambda handler template that needs to be changed to meet the 
 
 a - For this use case(Lambda - SQS patterm) the Batch Processing from the Powertools is used following [these instructions](https://docs.powertools.aws.dev/lambda/python/latest/utilities/batch/#getting-started).
 
+b- Use CodeWhisperer to create the different sections of the code/handler in two ways:
+  - Type in instructions as comments and wait for CodeWhisperer to suggest code.
+  - Start typing the code and wait for CodeWhisperer to complete it.
+
 
 ## Issues Encountered
 
@@ -79,7 +83,6 @@ a - For this use case(Lambda - SQS patterm) the Batch Processing from the Powert
     - Needed incremental instructions.
     - Developer has to know the different sections and flow of the lambda code to instruction CodeWhisperer on what to do next.
     - Code needed more troubleshooting than non AI code, like the `BatchException` and the `@batch_processor.record_handler` module was wrongly imported causing an exception.
-
 
 - App Composer console resets when the browser is refreshed but backs up changes in the local repo under .aws-composer
 
