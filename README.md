@@ -4,6 +4,10 @@ This project creates a lambda function using 2 AWS AI tools: [AWS CodeWhipsperer
 
 [AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) and [Powertools for AWS Lambda](https://docs.powertools.aws.dev/lambda/python/latest/) are also used here.
 
+### Diagram
+
+![image](ai-sam-app.png)
+
 ### Requirements
 - Python3+
 - pip
@@ -45,21 +49,21 @@ In this step application composer is used to add code to the template.yaml from 
 <details>
 <summary>App Composer Setup Steps</summary>
 <br>
-a - Go to the Application Composer console 
+a - Go to the Application Composer console in AWS 
 
 b - Choose `Create New Project`
 
 c - Go through the tutorial or skip it
 
-d - In the top right corner, go to Menu -> Project Folder -> Choose the folder where SAM create the template. 
+d - In the top right corner, go to Menu -> Project Folder -> Choose the folder where SAM created the template. 
 
 The template diagram should now be visible in the `Canvas` section of App Composer.
 </details>
 For this use case: 
 
-- The API Gatewy is not needed, so it is removed (Click and choose delete)
+- The API Gatewy is not needed, so it is removed (Click icon and choose delete)
 
-- Replace it with an SQS Queue. In the left side search bar type sqs then drag and drop it onto the `Canvas`, then connect it to the lambda symbol.
+- Replace it with an SQS Queue. In the left side search bar type sqs then drag and drop the sqs icon onto the `Canvas`, then connect it to the lambda symbol.
 
 - Click each symbol to see the configurations and adjust as needed.
 
@@ -68,16 +72,16 @@ The changes made in App Composer should reflect in the template.yaml file in the
 ## III - Adjust Handler Code with CodeWhisperer and Powertools
 Sam init creates a lambda handler template that needs to be changed to meet the business case.
 
-a - For this use case(Lambda - SQS patterm) the Batch Processing from the Powertools is used following [these instructions](https://docs.powertools.aws.dev/lambda/python/latest/utilities/batch/#getting-started).
+a - For this use case (Lambda - SQS patterm), the Batch Processing utility from the Powertools is used following [these instructions](https://docs.powertools.aws.dev/lambda/python/latest/utilities/batch/#getting-started).
 
 b- Use CodeWhisperer to create the different sections of the code/handler in two ways:
-  - Type in instructions as comments and wait for CodeWhisperer to suggest code.
+  - Type in instructions as comments, press ENTER and wait for CodeWhisperer to suggest code.
   - Start typing the code and wait for CodeWhisperer to complete it.
 
 
 ## Issues Encountered
 
-- SAM CLI was outdated which caused issues finding the templates during `sam init`.
+- SAM CLI was outdated which caused issues when looking for the templates during `sam init`.
 
 - **CodeWhisperer** 
     - Needed incremental instructions.
