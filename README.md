@@ -40,7 +40,7 @@ sam init --app-template hello-world-powertools-python --name sam-app --package-t
 The above comands will build the repo with all the needed files and directories.
 </details>
 
-### 2 - Use Application Composer
+## II - Use Application Composer
 In this step application composer is used to add code to the template.yaml from a diagram.
 <details>
 <summary>App Composer Setup Steps</summary>
@@ -65,7 +65,7 @@ For this use case:
 
 The changes made in App Composer should reflect in the template.yaml file in the local repo.
 
-### 3 - Adjust handler code
+## III - Adjust Handler Code with CodeWhisperer and Powertools
 Sam init creates a lambda handler template that needs to be changed to meet the business case.
 
 a - For this use case(Lambda - SQS patterm) the Batch Processing from the Powertools is used following [these instructions](https://docs.powertools.aws.dev/lambda/python/latest/utilities/batch/#getting-started).
