@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: |
+  ai-sam-app
+  Powertools and CodeWhisperer lambda
+Globals:
+  Function:
+    Timeout: 5
+    MemorySize: 128
+    Runtime: python3.11
+    Environment:
+      Variables:
+        POWERTOOLS_SERVICE_NAME: aiSamApp
+        POWERTOOLS_METRICS_NAMESPACE: Powertools
+        LOG_LEVEL: INFO
+        AIQUEUE_QUEUE_NAME: '!GetAtt aiQueue.QueueName'
+        AIQUEUE_QUEUE_ARN: '!GetAtt aiQueue.Arn'
+        AIQUEUE_QUEUE_URL: '!Ref aiQueue'
+Resources:
+  aiSamApp:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: powertools_handler.lambda_handler
+      CodeUri: src
+      Description: Hello ai function
+      Tags:
+        LambdaPowertools: python
+      Events:
+        aiQueue:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt aiQueue.Arn
+            BatchSize: 1
+            FunctionResponseTypes:
+              - ReportBatchItemFailures
+      Policies:
+        - SQSPollerPolicy:
+            QueueName: !GetAtt aiQueue.QueueName
+  aiQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      MessageRetentionPeriod: 120
+      VisibilityTimeout: 30
