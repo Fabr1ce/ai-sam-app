@@ -78,6 +78,21 @@ b- Use CodeWhisperer to create the different sections of the code/handler in two
   - Type in instructions as comments, press ENTER and wait for CodeWhisperer to suggest code.
   - Start typing the code and wait for CodeWhisperer to complete it.
 
+## IV - Deploy The Lambda Function Using SAM
+
+```
+sam deploy --guided
+```
+- Check the AWS Console Lambda Console to confirm the lambda has been deployed.
+
+- Check Clouformation Console if the lambda is not found to troubleshoot.
+
+- Test it with the event file in the `events` directory.
+
+## V - Clean up AWS resources
+
+
+ 
 
 ## Issues Encountered
 
@@ -91,3 +106,17 @@ b- Use CodeWhisperer to create the different sections of the code/handler in two
 - App Composer console resets when the browser is refreshed but backs up changes in the local repo under .aws-composer
 
 - App Composer did not add sqs policy to lambda, it had to be added to the template maually.
+
+### Bonus: Push to Github to share
+
+From the ai-sam-app directory:
+
+```
+git init
+
+gh repo create ai-sam-app --source . --public
+
+git add . && git commit -m "initial commit"
+
+git push
+```

@@ -22,7 +22,7 @@ class InvalidPayload(Exception):
 @tracer.capture_method
 def record_handler(record: SQSRecord):
     payload: str = record.body  # if json string data, otherwise record.body for str
-    print("hahahah", payload)
+    print("The pokemon's name is ", payload)
     logger.info(payload)
     send_api_get(payload)
     if not payload:
@@ -45,9 +45,10 @@ def send_api_get(name):
      url = f"https://pokeapi.co/api/v2/pokemon/{name}"
      response = requests.get(url)
      if response.status_code != 200:
-          raise Exception(f"Request status is {response.status_code}: Failed")
+        logger.error(f"Request status is {response.status_code}: Failed", response.content)
+        raise Exception(f"Request status is {response.status_code}: Failed")
      else:  # if status code is 200, then proceed to get the pokemon type and abilities
-        
+    
         print("Request status is", response.status_code, ":Successful")
         r = response.json()
         print(f"{name}'s Type is ", r.get("types")[0].get(    "type").get("name"))
