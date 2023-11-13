@@ -78,6 +78,32 @@ b- Use CodeWhisperer to create the different sections of the code/handler in two
   - Type in instructions as comments, press ENTER and wait for CodeWhisperer to suggest code.
   - Start typing the code and wait for CodeWhisperer to complete it.
 
+<details>
+
+<summary>Test the Lambda using SAM</summary>
+<br>
+```
+sam build
+```
+```
+sam local invoke -e events/pokemon.json 
+```
+</details>
+
+<details>
+<summary>Unit and Integration tests with PIP</summary>
+<br>
+
+```bash
+pip install -r tests/requirements.txt --user
+# unit test
+python -m pytest tests/unit -v
+
+AWS_SAM_STACK_NAME="sam-app" 
+python -m pytest tests/integration -v
+```
+</details>
+
 ## IV - Deploy The Lambda Function Using SAM
 
 ```
@@ -91,7 +117,7 @@ sam deploy --guided
 
 ## V - Clean up AWS resources
 
-
+sam delete --stack-name "ai-sam-app"
  
 
 ## Issues Encountered
