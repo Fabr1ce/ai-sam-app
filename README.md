@@ -101,7 +101,7 @@ pip install -r tests/requirements.txt --user
 # unit test
 python -m pytest tests/unit -v
 
-AWS_SAM_STACK_NAME="sam-app" 
+AWS_SAM_STACK_NAME="ai-sam-app" 
 python -m pytest tests/integration -v
 ```
 </details>
@@ -113,14 +113,20 @@ sam deploy --guided
 ```
 - Check the AWS Console Lambda Console to confirm the lambda has been deployed.
 
-- Check Clouformation Console if the lambda is not found to troubleshoot.
+- Check CloudFormation Console to monitor the lambda deployment.
 
 - Test it with the event file in the `events` directory.
 
 ## V - Clean up AWS resources
 
+```
 sam delete --stack-name "ai-sam-app"
- 
+```
+
+Then, navigate to the s3 console to delete the files in the sam-cli s3 bucket before running the following:
+```
+sam delete --stack-name "aws-sam-cli-managed-default"
+```
 
 ## Issues Encountered
 
