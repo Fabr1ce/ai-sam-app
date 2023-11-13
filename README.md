@@ -82,9 +82,11 @@ b- Use CodeWhisperer to create the different sections of the code/handler in two
 
 <summary>Test the Lambda using SAM</summary>
 <br>
+
 ```
 sam build
 ```
+
 ```
 sam local invoke -e events/pokemon.json 
 ```
